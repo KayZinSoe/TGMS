@@ -1,0 +1,18 @@
+- generic [ref=e4]:
+  - banner [ref=e5]:
+    - generic:
+      - link:
+        - /url: /
+        - strong
+    - navigation
+  - main [ref=e6]:
+    - generic [ref=e8]:
+      - heading "Vessel Registry" [level=2] [ref=e9]
+      - generic [ref=e10]:
+        - textbox "Vessel name *" [ref=e13]
+        - textbox "IMO (optional)" [ref=e16]
+        - button "Add Vessel" [pressed] [ref=e17] [cursor=pointer]
+      - paragraph [ref=e19]: No vessels added yet.
+      - heading "Vessel Search" [level=2] [ref=e20]
+      - textbox "Enter IMO number" [ref=e23]
+      - button "Get Vessel" [pressed] [ref=e24] [cursor=pointer]

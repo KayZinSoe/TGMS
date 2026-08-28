@@ -1,0 +1,52 @@
+/* VesselList.css */
+.vessel-page {
+  max-width: 500px;
+  margin: 30px auto;
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
+}
+
+.vessel-form {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+.vessel-form input {
+  padding: 6px 10px;
+  border: 1px solid #bbb;
+  border-radius: 4px;
+}
+.vessel-form button {
+  background: #0069d9;
+  color: #fff;
+  border: none;
+  padding: 6px 12px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.vessel-list {
+  list-style: none;
+  padding: 0;
+}
+.vessel-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #f8f9fa;
+  margin-bottom: 6px;
+  padding: 8px 12px;
+  border-radius: 4px;
+}
+.vessel-list small {
+  color: #555;
+  margin-left: 10px;
+}
+.remove-btn {
+  background: transparent;
+  border: none;
+  color: #c00;
+  cursor: pointer;
+  font-size: 1.2rem;
+}

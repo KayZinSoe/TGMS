@@ -1,0 +1,4 @@
+sg/gov/mpa/tgms/entity/Vessel.class
+sg/gov/mpa/tgms/repository/Repository.class
+sg/gov/mpa/tgms/repository/VesselRepository.class
+sg/gov/mpa/tgms/controller/VesselController.class

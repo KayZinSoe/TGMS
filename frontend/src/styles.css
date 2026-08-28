@@ -1,0 +1,35 @@
+:root{
+  --bg:#f8fafc;
+  --card:#ffffff;
+  --muted:#64748b;
+  --accent:#0ea5a5;
+  --text:#0f172a;
+  --radius:12px;
+}
+
+*{box-sizing:border-box}
+html,body,#root{height:100%;}
+body{margin:0;font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; background:linear-gradient(180deg,var(--bg),#ffffff); color:var(--text)}
+
+.app-container{min-height:100%; display:flex; flex-direction:column}
+
+.header{display:flex; align-items:center; justify-content:space-between; padding:16px 24px; background:transparent}
+.header .brand{display:flex; align-items:center; gap:12px}
+.brand-badge{width:44px;height:44px;border-radius:10px;background:var(--accent);color:white;display:flex;align-items:center;justify-content:center;font-weight:700}
+
+.main{flex:1; display:flex; justify-content:center; padding:32px}
+.content{width:100%; max-width:980px}
+.card{background:var(--card); border-radius:var(--radius); padding:20px; box-shadow:0 6px 20px rgba(2,6,23,0.06)}
+
+.greeting{display:flex; gap:16px; align-items:center}
+.greeting h3{margin:0}
+.greeting p{margin:0;color:var(--muted)}
+
+.greeting-actions{margin-top:12px}
+
+.footer{padding:12px; text-align:center; color:var(--muted); font-size:13px}
+
+@media (max-width:600px){
+  .main{padding:16px}
+  .brand-badge{width:36px;height:36px}
+}

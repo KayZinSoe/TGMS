@@ -1,0 +1,33 @@
+/* Global styles */
+.app-header {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px;
+  border-bottom: 1px solid #eee;
+}
+
+.app-logo-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.app-nav-placeholder {
+  opacity: 0.6;
+}
+
+.home-grid {
+  display: grid;
+  gap: 20px;
+}
+
+.welcome-container {
+  display: flex;
+  justify-content: center;
+}
+
+.welcome-svg {
+  width: 100%;
+  height: auto;
+  max-width: 900px;
+  overflow: visible;
+}

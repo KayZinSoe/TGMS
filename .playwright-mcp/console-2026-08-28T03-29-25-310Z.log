@@ -1,0 +1,19 @@
+[     175ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:5174/node_modules/.vite/deps/react-dom_client.js?v=db34e042:14333
+[     243ms] [LOG] kay @ http://localhost:5174/src/pages/home/component/VesselList.tsx:31
+[     245ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:8080/api/vessels/message:0
+[     264ms] TypeError: Failed to fetch
+    at loadVesselMessage (http://localhost:5174/src/pages/home/component/VesselList.tsx:29:3)
+    at http://localhost:5174/src/pages/home/component/VesselList.tsx:35:3
+    at Object.react_stack_bottom_frame (http://localhost:5174/node_modules/.vite/deps/react-dom_client.js?v=db34e042:12900:13)
+    at runWithFiberInDEV (http://localhost:5174/node_modules/.vite/deps/react-dom_client.js?v=db34e042:850:66)
+    at commitHookEffectListMount (http://localhost:5174/node_modules/.vite/deps/react-dom_client.js?v=db34e042:6615:153)
+    at commitHookPassiveMountEffects (http://localhost:5174/node_modules/.vite/deps/react-dom_client.js?v=db34e042:6650:55)
+    at commitPassiveMountOnFiber (http://localhost:5174/node_modules/.vite/deps/react-dom_client.js?v=db34e042:7616:22)
+    at recursivelyTraversePassiveMountEffects (http://localhost:5174/node_modules/.vite/deps/react-dom_client.js?v=db34e042:7604:5)
+    at commitPassiveMountOnFiber (http://localhost:5174/node_modules/.vite/deps/react-dom_client.js?v=db34e042:7670:14)
+    at recursivelyTraversePassiveMountEffects (http://localhost:5174/node_modules/.vite/deps/react-dom_client.js?v=db34e042:7604:5)
+[   43104ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:8080/api/vessels/imo%20345:0
+[   43104ms] [LOG] Vessel Test OK @ http://localhost:5174/src/pages/home/component/VesselList.tsx:59
+[   97032ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:5174/node_modules/.vite/deps/react-dom_client.js?v=db34e042:14333
+[   97350ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:5174/node_modules/.vite/deps/react-dom_client.js?v=db34e042:14333
+[   99288ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:5174/node_modules/.vite/deps/react-dom_client.js?v=db34e042:14333

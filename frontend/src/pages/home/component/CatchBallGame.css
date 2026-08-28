@@ -1,0 +1,27 @@
+.catch-game {
+  text-align: center;
+  margin: 20px auto;
+  font-family: Arial, sans-serif;
+}
+
+/* board */
+.board {
+  position: relative;
+  background: #f0f8ff;
+  border: 2px solid #333;
+  overflow: hidden;
+  margin: 10px auto;
+}
+
+/* paddle */
+.paddle {
+  position: absolute;
+  background: #0066cc;
+}
+
+/* ball */
+.ball {
+  position: absolute;
+  background: #ff6600;
+  border-radius: 50%;
+}
