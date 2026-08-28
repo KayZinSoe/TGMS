@@ -101,7 +101,7 @@ export default function VesselList() {
           onChange={(e) => setImo(e.target.value)}
         />
         {/* Use a static label for the add button */}
-        <Button type="submit" id="add-vessel-btn" label='Add Vessel'></Button>
+        <Button type="submit" id="add-vessel-btn" label='Adding Vessel'></Button>
       </form>
 
       {vessels.length > 0 ? (
