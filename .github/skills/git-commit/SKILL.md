@@ -63,6 +63,9 @@ git status --porcelain
 If nothing is staged or you want to group changes differently:
 
 ```bash
+# Inspect the repo first when the request is vague
+git status --porcelain
+
 # Stage specific files
 git add path/to/file1 path/to/file2
 
@@ -73,11 +76,23 @@ git add src/components/*
 # Stage one commit for deleted files only
 git add -u
 
-# Stage one commit for all changes including deletions and new files
+# Stage all current changes, including untracked, modified, and deleted files
 git add -A
 
 # Interactive staging
 git add -p
+```
+
+Default behavior for an ambiguous request like "commit":
+
+```bash
+# First inspect what changed
+git status --porcelain
+
+# Then choose the narrowest safe stage set
+git add -A
+# or git add -u
+# or git add path/to/files
 ```
 
 Common commit patterns:
@@ -95,12 +110,12 @@ git commit -m "feat: add vessel stepper"
 git add frontend/src/pages/home/component/VesselList.tsx
 git commit -m "feat(ui): add vessel stepper"
 
-# All changes including deletions
+# All changes including new, modified, and deleted files
 git add -A
 git commit -m "fix: update auth and cleanup removed files"
 ```
 
-Important: `git commit` only records files that are already staged. Deleted tracked files are not included unless they are explicitly staged with `git add -A`, `git add -u`, or `git rm`.
+Important: `git commit` only records files that are already staged. To cover all current repo changes, use `git add -A`; this includes untracked, modified, and deleted files. Deleted tracked files are not included unless they are explicitly staged with `git add -A`, `git add -u`, or `git rm`.
 
 **Never commit secrets** (.env, credentials.json, private keys).
 
