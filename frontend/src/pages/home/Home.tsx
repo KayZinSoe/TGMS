@@ -24,8 +24,6 @@ export default function Home({ onNavigate }: { onNavigate?: (to: string) => void
       {/* <CatchBallGame />          */}
       <VesselList />
 
-
-
      
     </MainLayout>
   )
