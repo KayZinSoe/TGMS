@@ -87,12 +87,6 @@ export default function VesselList() {
       `http://localhost:8080/api/vessels/${encodeURIComponent(normalizedImo)}`
     );
 
-    if (response.status === 404) {
-      alert('Vessel not found');
-      setError('Vessel not found');
-      return;
-    }
-
     if (!response.ok) {
       throw new Error('Request failed');
     }
