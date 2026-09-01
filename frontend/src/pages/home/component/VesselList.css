@@ -1,22 +1,46 @@
 /* VesselList.css */
 .vessel-page {
-  max-width: 500px;
+  max-width: 700px;
   margin: 30px auto;
-  font-family: Arial, Helvetica, sans-serif;
-  text-align: center;
+  font-family: var(--mpa-font-family, Arial, Helvetica, sans-serif);
+  text-align: left;
+}
+
+.stepper-wrapper {
+  margin: 20px 0 24px;
 }
 
 .vessel-form {
   display: flex;
-  gap: 8px;
+  flex-direction: column;
+  gap: 12px;
   justify-content: center;
   margin-bottom: 20px;
+  padding: 20px;
+  background: var(--mpa-gray-5, #f9f9fa);
+  border: 1px solid var(--mpa-gray-20, #e5e7eb);
+  border-radius: var(--border-radius-075, 12px);
 }
+
+.step-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.step-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 8px;
+}
+
 .vessel-form input {
   padding: 6px 10px;
   border: 1px solid #bbb;
   border-radius: 4px;
 }
+
 .vessel-form button {
   background: #0069d9;
   color: #fff;

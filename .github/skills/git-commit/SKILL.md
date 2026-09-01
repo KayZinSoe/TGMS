@@ -27,14 +27,8 @@ Create standardized, semantic git commits using the Conventional Commits specifi
 | ---------- | ------------------------------ |
 | `feat`     | New feature                    |
 | `fix`      | Bug fix                        |
-| `docs`     | Documentation only             |
 | `style`    | Formatting/style (no logic)    |
-| `refactor` | Code refactor (no feature/fix) |
-| `perf`     | Performance improvement        |
-| `test`     | Add/update tests               |
-| `build`    | Build system/dependencies      |
-| `ci`       | CI/config changes              |
-| `chore`    | Maintenance/misc               |
+| `chore`    | For maintenance activities such as adding documentation, code refactoring (no additional logic introduced), introduce performance improvements, add CI/config related changes, add / update tests, add / update build system |
 | `revert`   | Revert commit                  |
 
 ## Breaking Changes
@@ -76,9 +70,37 @@ git add path/to/file1 path/to/file2
 git add *.test.*
 git add src/components/*
 
+# Stage one commit for deleted files only
+git add -u
+
+# Stage one commit for all changes including deletions and new files
+git add -A
+
 # Interactive staging
 git add -p
 ```
+
+Common commit patterns:
+
+```bash
+# Deleted files only
+git add -u
+git commit -m "chore: remove obsolete files"
+
+# New or modified files only
+git add .
+git commit -m "feat: add vessel stepper"
+
+# Specific files only
+git add frontend/src/pages/home/component/VesselList.tsx
+git commit -m "feat(ui): add vessel stepper"
+
+# All changes including deletions
+git add -A
+git commit -m "fix: update auth and cleanup removed files"
+```
+
+Important: `git commit` only records files that are already staged. Deleted tracked files are not included unless they are explicitly staged with `git add -A`, `git add -u`, or `git rm`.
 
 **Never commit secrets** (.env, credentials.json, private keys).
 
@@ -112,6 +134,7 @@ EOF
 - One logical change per commit
 - Present tense: "add" not "added"
 - Imperative mood: "fix bug" not "fixes bug"
+- Stage deletions before commit using `git add -A` or `git rm`
 - Reference issues: `Closes #123`, `Refs #456`
 - Keep description under 72 characters
 

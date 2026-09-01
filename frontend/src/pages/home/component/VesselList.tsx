@@ -1,24 +1,64 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import './VesselList.css';
-import { Button, TextField } from 'mpa-design-system';
+import { Button, Stepper, TextField } from 'mpa-design-system';
 
 type Vessel = {
   name: string;
   imo?: string;
+  captain?: string;
+  crewCount?: string;
+  cargoType?: string;
+  cargoWeight?: string;
 };
+
+const vesselSteps = [
+  { label: 'Vessel Details' },
+  { label: 'Crew' },
+  { label: 'Cargo' },
+];
 
 export default function VesselList() {
   const [vessels, setVessels] = useState<Vessel[]>([]);
   const [name, setName] = useState('');
   const [imo, setImo] = useState('');
+  const [captain, setCaptain] = useState('');
+  const [crewCount, setCrewCount] = useState('');
+  const [cargoType, setCargoType] = useState('');
+  const [cargoWeight, setCargoWeight] = useState('');
+  const [currentStep, setCurrentStep] = useState(0);
+
+  const resetVesselForm = () => {
+    setName('');
+    setImo('');
+    setCaptain('');
+    setCrewCount('');
+    setCargoType('');
+    setCargoWeight('');
+    setCurrentStep(0);
+  };
 
   const addVessel = (e: React.FormEvent) => {
     e.preventDefault();
+
+    if (currentStep < vesselSteps.length - 1) {
+      if (!name.trim()) return;
+      setCurrentStep((prev) => prev + 1);
+      return;
+    }
+
     if (!name.trim()) return;
-    const newVessel: Vessel = { name: name.trim(), imo: imo.trim() || undefined };
+
+    const newVessel: Vessel = {
+      name: name.trim(),
+      imo: imo.trim() || undefined,
+      captain: captain.trim() || undefined,
+      crewCount: crewCount.trim() || undefined,
+      cargoType: cargoType.trim() || undefined,
+      cargoWeight: cargoWeight.trim() || undefined,
+    };
+
     setVessels((prev) => [...prev, newVessel]);
-    setName('');
-    setImo('');
+    resetVesselForm();
   };
 
   const removeVessel = (idx: number) => {
@@ -30,20 +70,6 @@ export default function VesselList() {
   const [vessel, setVessel] = useState<Vessel | null>(null);
   const [error, setError] = useState('');
   
-
-  // const loadVesselMessage = () => {
-  //   fetch("http://localhost:8080/api/vessels/message")
-  //     .then((response) => response.json())
-  //     .then((data) => {
-  //       setMessage(data.message);
-  //     });
-  //   console.log("kay");
-  // };
-
-  // useEffect(() => {
-  //   loadVesselMessage();
-  // }, []);
-
 
   const getVessel = async () => {
   try {
@@ -85,59 +111,90 @@ export default function VesselList() {
     <div className="vessel-page">
       <h2>Vessel Registry</h2>
 
-      {/* Add form */}
-      <form onSubmit={addVessel} className="vessel-form">
-        <TextField
-          type="text"
-          placeholder="Vessel name *"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          required
+      <div className="stepper-wrapper">
+        <Stepper
+          id="vessel-registration-stepper"
+          steps={vesselSteps}
+          activeStep={currentStep}
+          colour="primary"
         />
-        <TextField
-          type="text"
-          placeholder="IMO (optional)"
-          value={imo}
-          onChange={(e) => setImo(e.target.value)}
-        />
-        {/* Use a static label for the add button */}
-        <Button type="submit" id="add-vessel-btn" label='Adding Vessel'></Button>
-      </form>
+      </div>
 
-      {vessels.length > 0 ? (
-        <ul className="vessel-list">
-          {vessels.map((v, i) => (
-            <li key={i}>
-              <span>{v.name}</span>
-              {v.imo && <small>IMO: {v.imo}</small>}
-              <Button onClick={() => removeVessel(i)} size="small" id={''} label='x'></Button>
-            </li>
-          ))}
-        </ul>
-      ) : (
-        <p>No vessels added yet.</p>
-      )}
-      {/* <div>
-        <Button onClick={loadVesselMessage} id={''} label='Load Vessel'></Button>
-      </div> */}
+      <form onSubmit={addVessel} className="vessel-form vessel-form-stepper">
+        {currentStep === 0 && (
+          <div className="step-fields">
+            <TextField
+              type="text"
+              placeholder="Vessel name *"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              required
+            />
+            <TextField
+              type="text"
+              placeholder="IMO (optional)"
+              value={imo}
+              onChange={(e) => setImo(e.target.value)}
+            />
+          </div>
+        )}
+
+        {currentStep === 1 && (
+          <div className="step-fields">
+            <TextField
+              type="text"
+              placeholder="Captain name"
+              value={captain}
+              onChange={(e) => setCaptain(e.target.value)}
+            />
+            <TextField
+              type="text"
+              placeholder="Crew count"
+              value={crewCount}
+              onChange={(e) => setCrewCount(e.target.value)}
+            />
+          </div>
+        )}
+
+        {currentStep === 2 && (
+          <div className="step-fields">
+            <TextField
+              type="text"
+              placeholder="Cargo type"
+              value={cargoType}
+              onChange={(e) => setCargoType(e.target.value)}
+            />
+            <TextField
+              type="text"
+              placeholder="Cargo weight"
+              value={cargoWeight}
+              onChange={(e) => setCargoWeight(e.target.value)}
+            />
+          </div>
+        )}
+
+        <div className="step-actions">
+          {currentStep > 0 && (
+            <Button
+              type="button"
+              id="prev-vessel-step"
+              label="Back"
+              onClick={() => setCurrentStep((prev) => Math.max(prev - 1, 0))}
+            />
+          )}
+          <Button
+            type="submit"
+            id="add-vessel-btn"
+            label={currentStep === vesselSteps.length - 1 ? 'Save Vessel' : 'Next'}
+          />
+        </div>
+      </form>
 
       <div
         dangerouslySetInnerHTML={{
           __html: message
         }}
       />
-
-      
-
-      <h2>Vessel Search</h2>
-      <TextField
-        value={imoNumber}
-        onChange={(e) => setImoNumber(e.target.value)}
-        placeholder="Enter IMO number" type={'text'} 
-        />
-
-
-      <Button onClick={getVessel} id={''} label='Get Vessel'></Button>
 
     </div>
   );
