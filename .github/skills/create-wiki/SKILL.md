@@ -364,3 +364,11 @@ missing information is not invented
 the Wiki page is created or updated successfully
 the resulting page is verified
 the user receives a clear summary and Wiki page location
+
+## Skill Verification
+
+When this skill is invoked, first state:
+
+> CREATE-WIKI-SKILL-TRIGGERED
+
+Then continue with the normal workflow.
