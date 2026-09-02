@@ -3,7 +3,6 @@ name: create-wiki
 description: "Creates or updates GitHub Wiki pages from a user-provided title and documentation requirements. Use when documenting project components, infrastructure, APIs, access procedures, operational processes, troubleshooting guides, or other project knowledge that belongs in the GitHub Wiki. Produces structured, maintainable Markdown and verifies existing pages before making changes."
 argument-hint: "Wiki page title, documentation requirements, relevant project context, and source information"
 user-invocable: true
-
 ---
 
 # Create Wiki
