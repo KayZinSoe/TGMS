@@ -24,7 +24,11 @@ export default function Home({ onNavigate }: { onNavigate?: (to: string) => void
 
       {/* <CatchBallGame />          */}
       <VesselList />
-      <WorkflowDiagramCard diagram={""}/>
+      <WorkflowDiagramCard selectedFormat={undefined} downloadStatus={undefined} validationError={null} downloadError={null} onFormatChange={function (format: any): void {
+        throw new Error('Function not implemented.');
+      } } onDownload={function (): void {
+        throw new Error('Function not implemented.');
+      } }/>
 
     </MainLayout>
   )

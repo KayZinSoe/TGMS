@@ -1,51 +1,91 @@
-import React, { useEffect, useRef, useState } from 'react';
-import './WorkflowDiagramCard.css';
+import React from 'react';
+import { Button, Dropdown, Alert } from 'mpa-design-system';
+import './DownloadCard.css';
 
-let mermaidInitialised = false;
-
-interface WorkflowDiagramCardProps {
-  diagram: any;
+interface DownloadCardProps {
+    selectedFormat: any;
+    downloadStatus: any;
+    validationError: string | null;
+    downloadError: string | null;
+    onFormatChange: (format: any) => void;
+    onDownload: () => void;
 }
 
-const WorkflowDiagramCard: React.FC<WorkflowDiagramCardProps> = ({ diagram }) => {
-  const [svgContent, setSvgContent] = useState<string>('');
-  const [renderError, setRenderError] = useState<string | null>(null);
-  const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+const FORMAT_OPTIONS = [
+    { value: 'json', label: 'JSON' },
+    { value: 'csv',  label: 'CSV'  },
+    { value: 'txt',  label: 'TXT'  },
+];
 
+const DownloadCard: React.FC<DownloadCardProps> = ({
+    selectedFormat,
+    downloadStatus,
+    validationError,
+    downloadError,
+    onFormatChange,
+    onDownload,
+}) => {
+    const isLoading = downloadStatus === 'loading';
+    const isSuccess = downloadStatus === 'success';
 
-  return (
-    <div className="workflow-diagram-card">
-      <h4 className="workflow-diagram-card__title">{diagram.title}</h4>
-
-      <div className="workflow-diagram-card__body">
-        {/* Left: editable Mermaid source */}
-        <div className="workflow-diagram-card__editor-panel">
-          <p className="workflow-diagram-card__panel-label">Mermaid Source</p>
-          <textarea
-            className="workflow-diagram-card__textarea"
-            defaultValue={diagram.source}
-            spellCheck={false}
-            aria-label={`Mermaid source for ${diagram.title}`}
-          />
-        </div>
-
-        {/* Right: rendered preview */}
-        <div className="workflow-diagram-card__preview-panel">
-          <p className="workflow-diagram-card__panel-label">Preview</p>
-          {renderError ? (
-            <p className="workflow-diagram-card__render-error" role="alert">
-              {renderError}
+    return (
+        <div className="download-card">
+            <h3 className="download-card__heading">Download as ZIP</h3>
+            <p className="download-card__description">
+                Choose a file format and download all your user stories as a ZIP archive.
             </p>
-          ) : (
-            <div
-              className="workflow-diagram-card__svg-wrapper"
-              dangerouslySetInnerHTML={{ __html: svgContent }}
-            />
-          )}
+
+            <div className="download-card__field">
+                <Dropdown
+                    id="export-format-dropdown"
+                    label="File Format"
+                    options={FORMAT_OPTIONS}
+                    selectedValue={selectedFormat ?? undefined}
+                    onChange={(value) => onFormatChange(value as any)}
+                    placeholder="Select a format…"
+                    errorText={validationError ?? undefined}
+                    disabled={isLoading}
+                />
+            </div>
+
+            {downloadError && (
+                <div className="download-card__alert">
+                    <Alert
+                        id="download-error-alert"
+                        colour="error"
+                        content={{
+                            label: 'Download Failed',
+                            message: downloadError,
+                        }}
+                    />
+                </div>
+            )}
+
+            {isSuccess && (
+                <div className="download-card__alert">
+                    <Alert
+                        id="download-success-alert"
+                        colour="success"
+                        content={{
+                            label: 'Download Started',
+                            message: 'Your ZIP file is being downloaded.',
+                        }}
+                    />
+                </div>
+            )}
+
+            <div className="download-card__action">
+                <Button
+                    id="btn-download-zip"
+                    colour="primary"
+                    size="medium"
+                    label={isLoading ? 'Downloading…' : 'Download as ZIP'}
+                    disabled={isLoading}
+                    onClick={onDownload}
+                />
+            </div>
         </div>
-      </div>
-    </div>
-  );
+    );
 };
 
-export default WorkflowDiagramCard;
+export default DownloadCard;
