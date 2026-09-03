@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button, Dropdown, Alert } from 'mpa-design-system';
-import './DownloadCard.css';
+import './workflowDiagramCard.css';
 
 interface DownloadCardProps {
     selectedFormat: any;
@@ -30,9 +30,9 @@ const DownloadCard: React.FC<DownloadCardProps> = ({
 
     return (
         <div className="download-card">
-            <h3 className="download-card__heading">Download as ZIP</h3>
+            <h3 className="download-card__heading">Select Format</h3>
             <p className="download-card__description">
-                Choose a file format and download all your user stories as a ZIP archive.
+                Choose a file format and download.
             </p>
 
             <div className="download-card__field">
