@@ -5,6 +5,7 @@ import { fetchItems } from '../../api'
 import MainLayout from '../../layouts/MainLayout';
 import CatchBallGame from './component/CatchBallGame'; // added import
 import VesselList from './component/VesselList';
+import WorkflowDiagramCard from '../../components/workflowDiagramCard/WorkflowDiagramCard';
 
 
 
@@ -23,8 +24,8 @@ export default function Home({ onNavigate }: { onNavigate?: (to: string) => void
 
       {/* <CatchBallGame />          */}
       <VesselList />
+      <WorkflowDiagramCard diagram={""}/>
 
-     
     </MainLayout>
   )
 }
