@@ -9,7 +9,44 @@ allowed-tools: Bash
 
 ## Overview
 
-Create standardized, semantic git commits using the Conventional Commits specification. Analyze the actual diff to determine appropriate type, scope, and message.
+Create standardized git commits using the Conventional Commits specification.
+
+The skill supports three commit modes:
+
+1. Single commit with one message
+2. Single commit with multiple messages
+3. Multiple commits with separate messages
+
+The skill must also support selecting which file states to commit:
+
+- New files
+- Modified/updated files
+- Deleted files
+- Any combination of the above
+
+Never commit secrets such as `.env`, credentials, private keys, tokens, or other sensitive files.
+
+
+## Commit Modes
+
+### Single commit, single message
+Default when the user asks to commit.
+
+### Single commit, multiple messages
+When the user says things like:
+- "multi message"
+- "multiple messages"
+- "one commit with multiple messages"
+
+Create ONE commit containing multiple Conventional Commit-style lines.
+
+### Multiple commits
+When the user says things like:
+- "separate commits"
+- "commit separately"
+- "split into commits"
+
+Create separate commits.
 
 
 ## Conventional Commit Format
@@ -124,6 +161,31 @@ Analyze the diff to determine:
 - **Type**: What kind of change is this?
 - **Scope**: What area/module is affected?
 - **Description**: One-line summary of what changed (present tense, imperative mood, <72 chars)
+
+### Multi-Line Commit Messages
+
+When the changes contain multiple logical changes but should be committed as ONE git commit, generate multiple Conventional Commit-style message lines.
+
+Format:
+
+```text
+<type>[optional scope]: <description>
+<type>[optional scope]: <description>
+<optional body>
+<optional footer>
+```
+
+### Multiple Change Summaries
+
+A single commit may contain multiple Conventional Commit-style summary lines:
+
+```text
+<type>[optional scope]: <description>
+<type>[optional scope]: <description>
+<optional body>
+<optional footer>
+```
+
 
 ### 4. Execute Commit
 
