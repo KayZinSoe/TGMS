@@ -11,6 +11,7 @@ allowed-tools: Bash
 
 Create standardized, semantic git commits using the Conventional Commits specification. Analyze the actual diff to determine appropriate type, scope, and message.
 
+
 ## Conventional Commit Format
 
 ```
@@ -30,6 +31,7 @@ Create standardized, semantic git commits using the Conventional Commits specifi
 | `style`    | Formatting/style (no logic)    |
 | `chore`    | For maintenance activities such as adding documentation, code refactoring (no additional logic introduced), introduce performance improvements, add CI/config related changes, add / update tests, add / update build system |
 | `revert`   | Revert commit                  |
+| `delete` | Removal of obsolete, unused, deprecated, or unnecessary files/components |
 
 ## Breaking Changes
 
@@ -98,10 +100,6 @@ git add -A
 Common commit patterns:
 
 ```bash
-# Deleted files only
-git add -u
-git commit -m "chore: remove obsolete files"
-
 # New or modified files only
 git add .
 git commit -m "feat: add vessel stepper"
