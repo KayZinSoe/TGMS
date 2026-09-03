@@ -131,9 +131,6 @@ Analyze the diff to determine:
 # Single line
 git commit -m "<type>[scope]: <description>"
 
-# Subject plus body paragraphs in one commit
-git commit -m "<type>[scope]: <description>" -m "<body paragraph>" -m "<footer>"
-
 # Multi-line with body/footer
 git commit -m "$(cat <<'EOF'
 <type>[scope]: <description>
